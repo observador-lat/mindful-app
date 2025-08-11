@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  MindTrack
-//
-//  Created by Jorge Carrasco on 9/08/25.
-//
-
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
+    @State private var isNight = false
+    private let sunManager = SunTimesManager()
+    private let location = CLLocation(latitude: 0, longitude: 0)
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        SolarRailView(isNight: isNight)
+            .task {
+                isNight = await sunManager.isNight(at: Date(), location: location)
+            }
+            .padding()
     }
 }
 
