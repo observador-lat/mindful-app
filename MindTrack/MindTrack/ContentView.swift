@@ -13,7 +13,20 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
+                .border(Color.black)
+                .accessibilityLabel("Globe icon")
+                .accessibilityHint("Represents the world.")
+            Button(action: {}) {
+                Text("Start")
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .border(Color.black)
+            .accessibilityLabel("Start button")
+            .accessibilityHint("Begins tracking.")
             Text("Hello, world!")
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
         .padding()
     }
